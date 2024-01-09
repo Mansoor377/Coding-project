@@ -1,0 +1,42 @@
+# I will first write a Python code that will address the requirements of the assignment.
+# As per the user's student ID (808), I need to use file data8.csv and calculate the standard deviation of the distribution.
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Since I cannot access external files, I will simulate a small dataset to demonstrate the code.
+# This dataset will be replaced by the actual data from data8.csv in the user's environment.
+np.random.seed(808)  # Using student ID as the seed for reproducibility
+simulated_data = np.random.normal(35000, 5000, 1000)  # Simulating a normal distribution of salaries
+
+# Function to read data and perform calculations
+def analyze_salaries(data):
+    # Calculating the mean salary
+    mean_salary = np.mean(data)
+    
+    # Calculating the standard deviation of the distribution
+    std_deviation = np.std(data)
+    
+    # Creating a histogram to represent the probability density function
+    plt.hist(data, bins=30, density=True, alpha=0.6, color='g')
+
+    # Adding mean and standard deviation to the plot
+    plt.axvline(mean_salary, color='r', linestyle='dashed', linewidth=2)
+    plt.text(mean_salary * 1.02, max(plt.hist(data, bins=30, density=True)[0]), f'Mean: {mean_salary:.2f}', color='r')
+    plt.axvline(std_deviation, color='b', linestyle='dashed', linewidth=2)
+    plt.text(std_deviation * 1.02, max(plt.hist(data, bins=30, density=True)[0]) * 0.9, f'Std Dev: {std_deviation:.2f}', color='b')
+    
+    # Setting titles and labels
+    plt.title('Salary Distribution with Mean and Standard Deviation')
+    plt.xlabel('Salary (Euros)')
+    plt.ylabel('Probability Density')
+
+    # Showing the plot
+    plt.show()
+
+    return mean_salary, std_deviation
+
+# Analyzing the simulated data
+mean_salary, std_deviation = analyze_salaries(simulated_data)
+(mean_salary, std_deviation)
